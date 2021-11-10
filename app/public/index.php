@@ -1,3 +1,2 @@
 <?php
-echo "Requested URL: " . $_SERVER['REQUEST_URI'];
-phpinfo();
+echo 'Hello World!'

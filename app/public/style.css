@@ -1,0 +1,7 @@
+table, td, th{
+    border: solid 2px black;
+}
+.form-field{
+    border-color: black;
+    border-radius: 20;
+}

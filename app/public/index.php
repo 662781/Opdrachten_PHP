@@ -83,13 +83,20 @@ if(isset($_POST["verzend"])){
     $email = $_POST["email"];
     $message = $_POST["message"];
     
-    
-    $stmt = $connection->prepare("INSERT INTO posts(posted_at, name, email, message, ip_address) VALUES (now(), :name, :email, :message, :ip_address)");
-    $stmt->bindParam(':name', $name);
-    $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':message', $message);
-    $stmt->bindParam(':ip_address', $_SERVER["REMOTE_ADDR"]);
+    if($name != null && $message != null){
 
-    $stmt->execute();
+        $stmt = $connection->prepare("INSERT INTO posts(posted_at, name, email, message, ip_address) VALUES (now(), :name, :email, :message, :ip_address)");
+        $stmt->bindParam(':name', $name);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':message', $message);
+        $stmt->bindParam(':ip_address', $_SERVER["REMOTE_ADDR"]);
+
+        $stmt->execute();
+
+    }
+    else{
+        echo "Please fill in all the required fields! (name, message)";
+    }
+    
 }
 ?>

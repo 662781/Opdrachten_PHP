@@ -7,11 +7,50 @@
     <title>Document</title>
 </head>
 <body>
+    
+    <form>
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname">
+    </form>
+
+    <div id="articles">
+    </div>
     <script>
         fetch('http://localhost/api/article')
         .then(result => result.json())
-        .then(articles => console.log(articles))
+        .then(articles => {
+            articles.forEach(element => 
+            {
+                var headline = document.createElement("h1");
+                var paragraph = document.createElement("p");
+
+                headline.innerHTML = element.title;
+                paragraph.innerHTML = element.content;
+
+                document.getElementById("articles").appendChild(headline);
+                document.getElementById("articles").appendChild(paragraph);
+
+                console.log(element.title)
+            });
+            console.log(articles)
+        })
         .catch(error => console.log(error));
+
+        function sendForm(){
+            const data = {
+                title: document.getElementById("title").value,
+                content: document.getElementById("content").value
+            };
+            fetch('http://localhost/api/article', {
+                method: 'POST', 
+                headers: {'Content-Type': 'application/json'}, 
+                body: JSON.stringify(data)
+            })
+            .then(result => console.log(result))
+            .catch(console.log(error));
+        }
     </script>
 </body>
 </html>

@@ -23,7 +23,6 @@ class ArticleController {
 
             $this->articleService->insert($article);
             
-            echo "Article inserted in the database!";
         }
 
         if($_SERVER['REQUEST_METHOD'] === "GET"){

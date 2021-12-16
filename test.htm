@@ -9,10 +9,11 @@
 <body>
     
     <form>
-        <label for="fname">First name:</label><br>
-        <input type="text" id="fname" name="fname"><br>
-        <label for="lname">Last name:</label><br>
-        <input type="text" id="lname" name="lname">
+        <label for="title">Title:</label><br>
+        <input type="text" id="title" name="title"><br>
+        <label for="content">Content:</label><br>
+        <input type="text" id="content" name="content">
+        <button type="button" onclick="sendForm();">Send!</button>
     </form>
 
     <div id="articles">
@@ -48,8 +49,12 @@
                 headers: {'Content-Type': 'application/json'}, 
                 body: JSON.stringify(data)
             })
-            .then(result => console.log(result))
-            .catch(console.log(error));
+            .then(result => {
+                console.log(result)
+                //Make sure the new articles are shown without refreshing 
+                loadData()
+            })
+            .catch(error => console.log(error));
         }
     </script>
 </body>

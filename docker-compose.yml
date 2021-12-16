@@ -1,5 +1,4 @@
 version: '3'
-
 services:
     nginx:
         image: nginx:latest
@@ -17,13 +16,13 @@ services:
     mysql:
         image: mariadb:latest
         environment:
-        # The Root credentials are "root, secret123"
             MYSQL_ROOT_PASSWORD: 'secret123'
             MYSQL_USER: 'developer'
             MYSQL_PASSWORD: 'secret123'
             MYSQL_DATABASE: 'developmentdb'
         volumes:
             - mysqldata:/var/lib/mysql
+            - ./sql:/docker-entrypoint-initdb.d
         ports:
             - 3306:3306
     phpmyadmin:

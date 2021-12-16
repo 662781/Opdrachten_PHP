@@ -12,10 +12,11 @@ class ArticleController {
 
     public function index() {
       
-        // your code here
         // return all articles in the database as JSON
         
-        return null;       
+            $articlesJSON = $this->articleService->getAll();
+            
+            echo json_encode($articlesJSON);
     }
 }
 ?>
